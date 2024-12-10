@@ -11,13 +11,15 @@ services:
   my-mongodb:
     image: mongo
     container_name: my-mongodb
+    env_file:
+      - .env
     ports:
-      - 27017:27017
+      - ${MONGO_PORT}:27017
     restart: always
     environment:
-      - MONGO_INITDB_DATABASE=test
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       # seeding scripts
       - ./mongo-entrypoint:/docker-entrypoint-initdb.d
