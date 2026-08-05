@@ -14,5 +14,5 @@ services:
     volumes:
       # seeding scripts
       - ./mongo-entrypoint:/docker-entrypoint-initdb.d
-      # named volumes
-      - ./data/mongo/:/data/
+      # bind mount: persist MongoDB data in ./data/mongo
+      - ./data/mongo:/data/db
